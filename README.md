@@ -18,4 +18,4 @@ For simplicity we assume that any customer requests rentals of only one type i.e
 
 <br>
 ### Run Project
-![](bikeRent/screenshot.png)
+![](screenshot/rentBike.png)
