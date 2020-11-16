@@ -16,6 +16,8 @@ Since classes are used various customers and bike rental shops can be instantiat
 
 For simplicity we assume that any customer requests rentals of only one type i.e hourly, monthly or weekly but is free to chose the number of bikes he/she wants. However requested bikes should be less than available stock.
 
-<br>
+
 ### Run Project
+
+
 ![](screenshot/rentBike.png)
