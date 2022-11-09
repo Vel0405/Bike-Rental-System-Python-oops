@@ -45,7 +45,6 @@ class BikeRental:
             now = datetime.datetime.now()
             print(f"You have rented {n} bike on day basis today at {now.hour}.")
             print("You will be charged $20 for each day per bike.")
-            print("We hope that you enjoy our service.")
             self.stock = self.stock - n
             return now
     
@@ -63,35 +62,35 @@ class BikeRental:
             now = datetime.datetime.now()
             print(f"You have rented {n} bike on weekly basis today at {now.hour}.")
             print("You will be charged $60 for each week per bike.")
-            print("We hope that you enjoy our service.")
+            
             self.stock = self.stock - n
             return now
 
-    def returnBike(self, request):
+    def returnbike(self, request):
         """
         Accept rented bike from customer
         Return a bill
         """
         # extract the tuple and initiate bill
-        rentalTime, rentalBasis, numOfBikes = request
+        rentaltime, rentalbasis, numofbikes = request
         bill = 0
         # issue a bill only if all three parameters are not null!
-        if rentalTime and rentalBasis and numOfBikes:
-            self.stock = self.stock + numOfBikes
+        if rentaltime and rentalbasis and numofbikes:
+            self.stock = self.stock + numofbikes
             now = datetime.datetime.now()
-            rentalPeriod = now - rentalTime
+            rentalperiod = now - rentaltime
 
             # hourly bill calculation
-            if rentalBasis == 1:
-                bill = round(rentalPeriod.second/3600)*5*numOfBikes
+            if rentalbasis == 1:
+                bill = round(rentalperiod.second/3600)*5*numofbikes
 
             # daily basis calculation
-            elif rentalBasis == 2:
-                bill = round(rentalPeriod.days)*20*numOfBikes
+            elif rentalbasis == 2:
+                bill = round(rentalperiod.days)*20*numofbikes
             
             # weekly basis calculation
-            elif rentalBasis == 3:
-                bill = round(rentalPeriod.days / 7) * 60 * numOfBikes
+            elif rentalbasis == 3:
+                bill = round(rentalperiod.days / 7) * 60 * numofbikes
             
             print("Thanks for returning your bike. Hope you enjoyed our service!")
             print("You would be ${bill}")
@@ -108,11 +107,11 @@ class Customer:
         Our constructor method which instantiates various customer objects.
         """
         self.bikes = 0
-        self.rentalBasis = 0
-        self.rentalTime = 0
+        self.rentalbasis = 0
+        self.rentaltime = 0
         self.bill = 0
     
-    def requestBike(self):
+    def requestbike(self):
         """
         Take request from customer for number of bike to rent?
         """
@@ -121,21 +120,21 @@ class Customer:
         except:
             print("this is not positive integer number")
             return -1
-        
-        if bike < 1:
+        try:
+            bike < 1
+        except:
             print("Invalid Input, Number of bike should be positive integer ")
-            return -1
         else:
             self.bike = bike
 
         return bike
 
-    def returnBike(self):
+    def returnbike(self):
         """
         Return rented bike to owner
         """
-        if self.rentalBasis and self.rentalTime and self.bikes:
-            return self.rentalTime, self.rentalBasis, self.bikes  
+        if self.rentalbasis and self.rentaltime and self.bikes:
+            return self.rentaltime, self.rentalbasis, self.bikes  
         else:
             return 0,0,0
 
